@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Rustige Puzzel – Oneindige Levels</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="compliment.html">Compliment</a>
+  <a href="game.html">Spelletje</a>
+  <a href="chatbot.html">Chatbot</a>
+   <a href="info.html">Info</a> 
+</nav>
+
+<h1>🧩 Rustige puzzel</h1>
+
+<div class="card">
+  <p>Los de puzzel op om automatisch naar het volgende level te gaan!</p>
+  <p>Huidig Level: <span id="currentLevel">1</span></p>
+  
+  <div class="tiles" id="puzzle"></div>
+  <div class="result" id="puzzleResult"></div>
+</div>
+
+<script>
+let tiles = [1,2,3,4,5,6,7,8,""];
+let currentLevel = 1;
+
+function renderPuzzle() {
+  const puzzle = document.getElementById("puzzle");
+  puzzle.innerHTML = "";
+
+  tiles.forEach((value, index) => {
+    const div = document.createElement("div");
+    div.className = "tile";
+    if (value === "") div.classList.add("empty");
+    div.textContent = value;
+    div.onclick = () => moveTile(index);
+    puzzle.appendChild(div);
+  });
+}
+
+function moveTile(index) {
+  const emptyIndex = tiles.indexOf("");
+  const row = Math.floor(index / 3);
+  const emptyRow = Math.floor(emptyIndex / 3);
+
+  const validMoves = [
+    (row === emptyRow && index - 1 === emptyIndex) ? emptyIndex : -1,
+    (row === emptyRow && index + 1 === emptyIndex) ? emptyIndex : -1,
+    (index - 3 === emptyIndex) ? emptyIndex : -1,
+    (index + 3 === emptyIndex) ? emptyIndex : -1
+  ].filter(i => i !== -1);
+
+  if (validMoves.length > 0) {
+    [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+    renderPuzzle();
+    checkSolved();
+  }
+}
+
+function checkSolved() {
+  if (tiles.join(",") === "1,2,3,4,5,6,7,8,") {
+    document.getElementById("puzzleResult").textContent =
+      `🎉 Goed gedaan! Level ${currentLevel} opgelost.`;
+    currentLevel++;
+    document.getElementById("currentLevel").textContent = currentLevel;
+    // kleine vertraging voor volgend level
+    setTimeout(() => startGame(currentLevel), 1000);
+  }
+}
+
+// startGame schuift puzzel op basis van level
+function startGame(level) {
+  tiles = [1,2,3,4,5,6,7,8,""];
+  const moves = level * 2; // moeilijker naarmate level stijgt
+
+  for(let i=0; i<moves; i++) {
+    const emptyIndex = tiles.indexOf("");
+    const row = Math.floor(emptyIndex / 3);
+    const col = emptyIndex % 3;
+
+    const neighbors = [];
+    if(col>0) neighbors.push(emptyIndex-1);
+    if(col<2) neighbors.push(emptyIndex+1);
+    if(row>0) neighbors.push(emptyIndex-3);
+    if(row<2) neighbors.push(emptyIndex+3);
+
+    const randIndex = neighbors[Math.floor(Math.random() * neighbors.length)];
+    [tiles[emptyIndex], tiles[randIndex]] = [tiles[randIndex], tiles[emptyIndex]];
+  }
+
+  renderPuzzle();
+  document.getElementById("puzzleResult").textContent = "";
+}
+
+// start automatisch level 1
+startGame(currentLevel);
+</script>
+</body>
+</html>

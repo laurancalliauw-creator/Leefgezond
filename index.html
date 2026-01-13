@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Leef gezond</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    img{
+        width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="compliment.html">Compliment</a>
+    <a href="game.html">Spelletje</a>
+    <a href="chatbot.html">Chatbot</a>
+  </nav>
+
+  <h1>Leef gezond</h1>
+  <p>
+    Deze website draait rond <strong>SDG 3.4</strong>: het bevorderen van
+    mentale gezondheid en welzijn voor iedereen.
+  </p>
+
+  <p>
+    Hier leer je hoe ontspanning, ademhaling en rust kunnen helpen
+    om stress te verminderen en je beter te voelen.
+  </p>
+  <button id="playPauseBtn">Start Geluid</button>
+  <br><br>
+  <img src="logovandesite.png" alt="Logo van de website">
+
+
+  <audio id="mijnGeluid" loop>
+    <source src="achtergrondmuziek.mp3" type="audio/mpeg">
+    Uw browser ondersteunt geen audio-element.
+  </audio>
+
+  <script>
+    const btn = document.getElementById('playPauseBtn');
+    const audio = document.getElementById('mijnGeluid');
+
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "Stop Geluid";
+      } else {
+        audio.pause();
+        btn.textContent = "Start Geluid";
+      }
+    });
+  </script>
+</body>
+</html>

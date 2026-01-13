@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Leef gezond</title>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="compliment.html">Compliment</a>
+    <a href="game.html">Spelletje</a>
+        <a href="chatbot.html">Chatbot</a>
+
+  </nav>
+  <div class="chatbox">
+    <h2>💬 Praat met MindBot</h2>
+    <div class="messages" id="messages">
+      <div class="bot">MindBot: Hallo 😊 Hoe voel je je vandaag?</div>
+    </div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Typ hier..." onkeydown="if(event.key==='Enter') sendMessage()">
+      <button onclick="sendMessage()">Verstuur</button>
+    </div>
+  </div>
+
+  <script>
+    const messages = document.getElementById("messages");
+
+const responses = {
+      stress: [
+        "🌿 Probeer rustig adem te halen. Je bent veilig.",
+        "💚 Het is oké om even pauze te nemen.",
+        "🧘‍♀️ Even tot rust komen helpt echt."
+      ],
+      moe: [
+        "😴 Rust nemen is belangrijk. Goed dat je luistert naar jezelf.",
+        "🌙 Misschien even een korte pauze nemen helpt.",
+        "💤 Zorg goed voor jezelf, slaap is essentieel."
+      ],
+      blij: [
+        "😊 Fijn om te horen! Geniet van dat gevoel.",
+        "🌟 Dat klinkt heerlijk! Koester dit moment.",
+        "💛 Blijdschap is waardevol, blijf ervan genieten.",
+      ],
+      algemeen: [
+        "💚 Dank je dat je dit deelt.",
+        "🌿 Vertel me meer, ik luister.",
+        "💫 Het is goed om hierover te praten."
+      ],
+      verdrietig: [
+        "😢 Ik vind het erg dat je je zo voelt, kan ik iets doen om je te troosten?",
+        "💧 Oei, als je je hart wilt luchten of gewoon even wilt praten, weet dan dat ik er altijd voor je zal zijn.",
+        "😞 Ik leef met je mee, als ik iets kan doen om je stemming te verbeteren mag je het altijd zeggen."
+      ],
+      schuldig: [
+        "😳 O nee, je kunt het altijd zeggen als je ergens mee zit zodat ik je kan helpen.",
+        "😬 Als je iets wilt opbiechten kun je dat altijd aan mij zeggen. Dan heb je weer een goed gevoel.",
+        "😞 Dat vind ik jammer, wil je misschien met me praten?"
+      ]
+    };
+
+    function getReply(msg) {
+      msg = msg.toLowerCase();
+      if (msg.includes("stress") || msg.includes("druk")) {
+        return randomFrom(responses.stress);
+      }
+      if (msg.includes("moe") || msg.includes("vermoeid")) {
+        return randomFrom(responses.moe);
+      }
+      if (msg.includes("blij") || msg.includes("vrolijk") || msg.includes("gelukkig")) {
+        return randomFrom(responses.blij);
+      }
+      return randomFrom(responses.algemeen);
+    }
+    function randomFrom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const msg = input.value.trim();
+      if (!msg) return;
+      messages.innerHTML += `<div class="user">Jij: ${msg}</div>`;
+      const reply = getReply(msg);
+      messages.innerHTML += `<div class="bot">MindBot: ${reply}</div>`;
+      messages.scrollTop = messages.scrollHeight;
+      input.value = "";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Calm Mind – Good Health & Well-Being</title>
+ <link rel="stylesheet" href="styles.css">
+ <style>
+#compliment {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+ </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="compliment.html">Compliment</a>
+    <a href="game.html">Spelletje</a>
+        <a href="chatbot.html">Chatbot</a>
+
+  </nav>
+  <h1>Leef gezond</h1>
+  <p>Zorg voor je hoofd, verminder stress</p>
+
+  <!-- COMPLIMENT -->
+  <div class="card">
+    <h2>💚 Jouw compliment van nu</h2>
+    <p id="compliment"></p>
+  </div>
+
+  <script>
+    /* COMPLIMENT – ELKE OPENING NIEUW */
+const compliments = [
+ // --- Complimentjes ---
+  "Het feit dat je dit leest, toont dat je om jezelf geeft.",
+  "Je hoeft niet alles te snappen om slim te zijn.",
+  "Je inzet telt, ook als het resultaat tegenvalt.",
+  "Je bent niet lui, je bent moe — en dat is menselijk.",
+  "Je mag trots zijn op hoe je volhoudt.",
+  "Je waarde hangt niet af van punten of likes.",
+  "Je doet meer moeite dan anderen zien.",
+  "Het is oké dat leren soms zwaar voelt.",
+  "Je bent genoeg, ook op slechte dagen.",
+  "Je hoeft jezelf niet te vergelijken om goed te zijn.",
+
+  // --- Gedichten ---
+  `Op school lijkt het soms
+  alsof iedereen vooruitgaat
+  behalve jij.
+  Maar je ziet alleen hun buitenkant,
+  niet hun twijfel,
+  niet hun stress,
+  niet hun stille angsten.
+  Jij loopt niet achter.
+  Jij loopt jouw tempo.`,
+
+  `Er zijn dagen
+  waarop je hoofd vol zit
+  en stilte onmogelijk lijkt.
+  Toetsen, taken, verwachtingen.
+  Onthoud dit:
+  één slechte dag
+  maakt jou geen slechte leerling
+  en al zeker geen slecht mens.`,
+
+  `Je hoeft niet altijd gemotiveerd te zijn.
+  Soms is aanwezig zijn al genoeg.
+  Soms is proberen het maximum.
+  En soms is rust nemen
+  precies wat je nodig hebt
+  om later weer verder te kunnen.`,
+
+  `Als je denkt:
+  “Ik kan dit niet”
+  probeer dan te onthouden
+  hoeveel keer je al dacht
+  dat je het niet zou halen
+  en er toch nog bent.
+  Dat is geen toeval.
+  Dat ben jij.`,
+
+  `Niemand leert je
+  hoe je omgaat met druk,
+  met verwachtingen,
+  met het gevoel dat je tekortschiet.
+  Dus wees niet boos op jezelf
+  omdat het moeilijk is.
+  Moeilijk betekent niet onmogelijk.`,
+
+  `Je cijfers zeggen iets
+  over een toets,
+  niet over je toekomst,
+  niet over je intelligentie,
+  niet over je waarde.
+  Jij bent meer
+  dan wat er op papier staat.`,
+
+  `Er is niets mis met hulp nodig hebben.
+  Slimme mensen vragen hulp.
+  Dappere mensen durven toegeven
+  dat ze het even niet alleen kunnen.`,
+
+  `Soms voelt het alsof je moet kiezen
+  tussen sterk zijn
+  of eerlijk zijn.
+  Weet dit:
+  eerlijk zijn over hoe je je voelt
+  is een vorm van kracht.`,
+
+  `Je hoeft vandaag niet te schitteren.
+  Je hoeft niet de beste te zijn.
+  Je hoeft alleen jezelf te zijn
+  en te blijven bestaan.
+  Dat is genoeg.`,
+
+  `Dit is geen falen.
+  Dit is groeien,
+  ook al voelt het niet zo.
+  Groei doet soms pijn,
+  en toch is het vooruitgang.`
+];
+
+
+    document.getElementById("compliment").textContent =
+      compliments[Math.floor(Math.random() * compliments.length)];
+  </script>
+
+</body>
+</html>

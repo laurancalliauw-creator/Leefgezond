@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Info</title>
+  <link rel="stylesheet" href="styles.css">
+<style>
+
+</style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="compliment.html">Compliment</a>
+    <a href="game.html">Spelletje</a>
+    <a href="info.html">Info</a>
+  </nav>
+  <h1>Info</h1>
+  <p>Op deze pagina staat de info van deze site.</p>
+  <p>Scroll er door, of druk op een van de knoppen.</p>
+  <p>Je bezocht deze pagina al <strong id="aantal"></strong> keer.</p>
+  <nav>
+    <a onclick="gaNaar('ons')">Ga naar de rubriek "Over ons"</a>
+    <a onclick="gaNaar('SDG')">Ga naar de rubriek "SDG"</a>
+  </nav>
+  <div id="ons">
+    <h2>Over ons</h2>
+    <nav>
+      <a onclick="persoon('Daan')">Bekijk Daan</a>
+      <a onclick="persoon('Stefan')">Bekijk Stefan</a>
+      <a onclick="persoon('Lauran')">Bekijk Lauran</a>
+      <a onclick="persoon('Floris')">Bekijk Floris</a>
+    </nav>
+    <h3 id="persoon"></h3>
+    <p id="text"></p>
+  </div>
+
+  <div id="SDG">
+    <h2>SDG 3</h2>
+    <nav>
+      <a onclick="persoon('Daan')">Bekijk Daan</a>
+      <a onclick="persoon('Stefan')">Bekijk Stefan</a>
+      <a onclick="persoon('Lauran')">Bekijk Lauran</a>
+      <a onclick="persoon('Floris')">Bekijk Floris</a>
+    </nav>
+    <h3 id="persoon"></h3>
+    <p id="text"></p>
+  </div>
+</body>
+<script>
+  function gaNaar(plaats) {
+    document.getElementById(plaats).scrollIntoView({behavior: 'smooth'});
+  }
+  function persoon(p) {
+    var per = document.getElementById("persoon")
+    per.innerHTML = p;
+    if (p == "Lauran") {
+      per = document.getElementById("text")
+      per.innerHTML = "Hallo ik ben Lauran en ik help mee aan dit project.";
+    } else if (p == "Stefan") {
+      per = document.getElementById("text")
+      per.innerHTML = "Hallo ik ben Stefan, ik heb het logo gemaakt. Ik kom uit Roemenië.";
+    } else if (p == "Floris") {
+      per = document.getElementById("text")
+      per.innerHTML = "Hallo, mijn naam is Floris en ik verbeter uw mentale gezondeid.";
+    } else if (p == "Daan") {
+      per = document.getElementById("text")
+      per.innerHTML = "Hallo, ik ben Daan. Ik programmeerde een stukje van deze website en ik ben 12 jaar. Hopelijk vind je rust op deze website.";
+    }
+  }
+  // 1. Haal de huidige waarde op uit localStorage
+        let visits = localStorage.getItem('page_view_count');
+
+        // 2. Controleer of de waarde bestaat. Zo niet, begin bij 0.
+        if (visits === null) {
+            visits = 0;
+        }
+
+        // 3. Verhoog de teller met 1
+        visits = Number(visits) + 1;
+
+        // 4. Sla de nieuwe waarde weer op in localStorage
+        localStorage.setItem('page_view_count', visits);
+
+        // 5. Laat het resultaat zien op de pagina
+        document.getElementById('aantal').textContent = visits;
+        // Extra: Functie om de teller te wissen
+        function resetCounter() {
+            localStorage.removeItem('page_view_count');
+            location.reload(); // Ververs de pagina om de reset te zien
+        }
+</script>
+</html>
